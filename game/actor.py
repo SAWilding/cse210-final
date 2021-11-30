@@ -23,6 +23,7 @@ class Actor:
         Args:
             self (Actor): an instance of Actor.
         """
+        self._name = ""
         self._text = ""
         self._position = Point(0, 0)
         self._velocity = Point(0, 0)
@@ -30,6 +31,12 @@ class Actor:
         self._height = 0
         self._image = ""
 
+    def get_name(self):
+        return self._name
+
+    def set_name(self, name):
+        self._name = name
+        
     def get_width(self):
         return self._width
 

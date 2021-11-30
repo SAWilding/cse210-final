@@ -102,7 +102,7 @@ class Point:
         return self._x == 0 and self._y == 0
 
     def is_off_screen_x(self):
-        if (self._x >= constants.MAX_X - constants.BALL_WIDTH) or (self._x <= 0):
+        if (self._x <= 0):
             return True
         else:
             return False

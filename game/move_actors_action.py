@@ -2,9 +2,9 @@ from game.action import Action
 from game.point import Point
 
 class MoveActorsAction(Action):
-    def __init__(self, cast):
+    def __init__(self, cast, input_service):
         self._cast = cast
-
+        self._input_service = input_service
     def execute(self, cast):
         for group in cast.values():
             for i in range(len(group)):
@@ -17,3 +17,4 @@ class MoveActorsAction(Action):
                 y_velocity = velocity.get_y()
 
                 group[i].set_position(Point(x_position + x_velocity, y_position + y_velocity))
+
