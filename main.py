@@ -20,7 +20,6 @@ from game.handle_off_screen_action import HandleOffScreenAction
 from game.handle_obstacles_action import HandleObstaclesAction
 from game.reset_game_action import ResetGameAction
 from game.scoreboard import Scoreboard
-from game.coin import Coin
 
  
 
