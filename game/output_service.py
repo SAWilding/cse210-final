@@ -34,7 +34,8 @@ class OutputService:
             self (OutputService): An instance of OutputService.
         """ 
         raylibpy.begin_drawing()
-        raylibpy.clear_background(raylibpy.BLACK)
+        self.draw_image(0, 0, constants.IMAGE_BACKGROUND)
+        raylibpy.clear_background(raylibpy.WHITE)
 
     def draw_box(self, x, y, width, height):
         """
@@ -77,17 +78,21 @@ class OutputService:
         y = position.get_y()
         width = actor.get_width()
         height = actor.get_height()
-
+        frame = actor.get_frame()
+        animation_length = len(actor.get_animation())
         if actor.has_image():
             image = actor.get_image()
             self.draw_image(x, y, image)
-            #self.draw_image(x - width / 2, y - height / 2, image)
+        elif actor.has_animation():
+            animation = actor.get_animation()
+            self.draw_image(x, y, animation[int(frame)])
+            actor.add_frame()
         elif actor.has_text():
             text = actor.get_text()
             self.draw_text(x, y, text, True)
-        elif width > 0 and height > 0:
+        elif (width > 0 and height > 0) and (actor.has_animation == False):
             self.draw_box(x, y, width, height)
-        
+
     def draw_actors(self, actors):
         """Renders the given list of actors on the screen.
 

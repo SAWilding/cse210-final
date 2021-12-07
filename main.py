@@ -1,3 +1,6 @@
+import raylibpy
+from PIL import Image
+from game import constants
 from game.director import Director
 from game.draw_actors_action import DrawActorsAction
 from game.input_service import InputService
@@ -17,8 +20,9 @@ from game.handle_off_screen_action import HandleOffScreenAction
 from game.handle_obstacles_action import HandleObstaclesAction
 from game.reset_game_action import ResetGameAction
 from game.scoreboard import Scoreboard
+from game.coin import Coin
 
-
+ 
 
 def main():
 
@@ -26,21 +30,19 @@ def main():
     cast = {}
     scoreboard = Scoreboard()
     cast["player"] = [Player()]
-    # TODO: Create bricks here and add them to the list
 
     cast["obstacles"] = [Obstacle()] 
-    # TODO: Create a ball here and add it to the list
 
-    # TODO: Create a paddle here and add it to the list
     cast["scoreboard"] = [scoreboard]
 
+    cast["coin"] = [] 
     # Create the script {key: tag, value: list}
     script = {}
 
     input_service = InputService()
     output_service = OutputService()
     physics_service = PhysicsService()
-    audio_service = AudioService()
+    audio_service = AudioService() 
 
 
     draw_actors_action = DrawActorsAction(output_service)
@@ -66,8 +68,8 @@ def main():
 
 
 
-    # Start the game
-    output_service.open_window("Jump")
+    # Start the game  
+    output_service.open_window("Space Evader")
     audio_service.start_audio()
     
     director = Director(cast, script)

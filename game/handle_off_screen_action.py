@@ -23,3 +23,7 @@ class HandleOffScreenAction(Action):
                     obstacle = actor
                     if obstacle.get_position().is_off_screen_x():
                         group.remove(obstacle)
+                if actor.get_name() == "Coin":
+                    coin = actor
+                    if coin.get_position().is_off_screen_x():
+                        group.remove(coin)

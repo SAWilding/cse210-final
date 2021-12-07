@@ -19,3 +19,4 @@ class Scoreboard(Actor):
     def add_points(self, points):
         self._score += points
         self.set_text(f"Score: {self._score}")
+

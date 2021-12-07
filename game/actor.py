@@ -30,6 +30,8 @@ class Actor:
         self._width = 0
         self._height = 0
         self._image = ""
+        self._animation = []
+        self._frame = 0
 
     def get_name(self):
         return self._name
@@ -136,3 +138,21 @@ class Actor:
     def has_image(self):
         return self._image != ""
 
+    def has_animation(self):
+        return self._animation != []
+
+    def set_animation(self, frames):
+        for frame in frames:
+            self._animation.append(frame)
+
+    def get_animation(self):
+        return self._animation
+
+    def get_frame(self):
+        return self._frame
+    
+    def add_frame(self):
+        if int(self._frame) == len(self._animation) - 1:
+            self._frame = 0
+        else:
+            self._frame += constants.FRAME_SPEED
