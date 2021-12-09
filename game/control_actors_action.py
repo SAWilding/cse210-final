@@ -12,10 +12,12 @@ class ControlActorsAction(Action):
                 player = actor
                 if self._input_service.is_space_pressed():
                     self._audio_service.play_sound(constants.SOUND_JUMP)
+                    player.set_velocity(Point(0, 0))
                     velocity = player.get_velocity()
                     velocity_y = velocity.get_y()
                     
         
                     velocity_y -= constants.PLAYER_JUMP
+                    
                     player.set_velocity(Point(0, velocity_y))
 

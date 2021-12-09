@@ -22,9 +22,9 @@ SOUND_COW = os.path.join(os.getcwd(), "./cse210-final/assets/CowMoo.wav")
 
 
 
-GRAVITY = .5
+GRAVITY = .7
 MAX_GRAVITY_SPEED = 8
-PLAYER_JUMP = 15
+PLAYER_JUMP = 10
 PLAYER_HEIGHT = 25
 PLAYER_WIDTH = 42
 
