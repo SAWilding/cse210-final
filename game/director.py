@@ -1,6 +1,5 @@
-from time import sleep
-
-import raylibpy
+import pygame
+from pygame.constants import QUIT
 from game import constants
 
 class Director:
@@ -34,8 +33,9 @@ class Director:
             self._cue_action("output")
 
 
-            if raylibpy.window_should_close():
-                self._keep_playing = False
+            for event in pygame.event.get(QUIT):
+                if event.type == pygame.QUIT:
+                    self._keep_playing = False
 
 
     def _cue_action(self, tag):

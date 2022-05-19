@@ -10,7 +10,7 @@ class Scoreboard(Actor):
 
 
     def _prepare(self):
-        self.set_position(Point(0, constants.SCORE_HEIGHT))
+        self.set_position(Point(5, 5))
         self.set_width(constants.SCORE_WIDTH)
         self.set_height(constants.SCORE_HEIGHT)
         self.set_text(f"Score: {self._score}")

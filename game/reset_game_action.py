@@ -24,4 +24,4 @@ class ResetGameAction(Action):
                 cast["scoreboard"] = [Scoreboard()]
                 cast["coin"] = []
         if should_restart:
-            scoreboard._text = f"Score: {scoreboard._score}\nPress \"space\" to restart"
+            scoreboard._text = f"Score: {scoreboard._score}                            Press \"space\" to restart"

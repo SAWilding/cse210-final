@@ -1,5 +1,4 @@
-import raylibpy
-from PIL import Image
+import pygame
 from game import constants
 from game.director import Director
 from game.draw_actors_action import DrawActorsAction
@@ -41,7 +40,7 @@ def main():
     input_service = InputService()
     output_service = OutputService()
     physics_service = PhysicsService()
-    audio_service = AudioService() 
+    audio_service = AudioService()   
 
 
     draw_actors_action = DrawActorsAction(output_service)
@@ -75,5 +74,5 @@ def main():
     director.start_game()
     audio_service.stop_audio()
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     main()

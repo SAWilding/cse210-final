@@ -1,9 +1,6 @@
-from math import degrees
 from game import constants
 from game.point import Point
 from game.action import Action
-from PIL import Image
-import os
 
 class HandleGravityAction(Action):
     def __init__(self, cast) -> None:

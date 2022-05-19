@@ -1,6 +1,5 @@
-import sys
 from game import constants
-import raylibpy
+import pygame
 
 class OutputService:
     """Outputs the game state. The responsibility of the class of objects is to draw the game state on the terminal. 
@@ -20,12 +19,15 @@ class OutputService:
         """
         self._textures = {}
 
+        self._window = pygame.display.set_mode((constants.MAX_X, constants.MAX_Y))
+        self._clock = pygame.time.Clock()
+
     def open_window(self, title):
         """
         Opens a new window with the provided title.
         """
-        raylibpy.init_window(constants.MAX_X, constants.MAX_Y, title)
-        raylibpy.set_target_fps(constants.FRAME_RATE)
+        pygame.display.set_caption("Space Evader")
+        self._clock.tick(constants.FRAME_RATE)
         
     def clear_screen(self):
         """Clears the Asciimatics buffer in preparation for the next rendering.
@@ -33,26 +35,29 @@ class OutputService:
         Args:
             self (OutputService): An instance of OutputService.
         """ 
-        raylibpy.begin_drawing()
-        self.draw_image(0, 0, constants.IMAGE_BACKGROUND)
-        raylibpy.clear_background(raylibpy.WHITE)
+        self._window.fill((0, 0, 0))
 
-    def draw_box(self, x, y, width, height):
+
+    def draw_box(self, x, y, width, height, color=(0, 0, 255)):
         """
         Draws at rectangular box with the provided specifications.
         """
-        raylibpy.draw_rectangle(x, y, width, height, raylibpy.BLUE)
+        rect = pygame.Rect(x, y, width, height)
+        pygame.draw.rect(self._window, color, rect)
 
     def draw_text(self, x, y, text, is_dark_text):
         """
         Outputs the provided text at the desired location.
         """
-        color = raylibpy.WHITE
+        white = (255, 255, 255)
 
-        # if is_dark_text:
-        #     color = raylibpy.BLACK
+        if pygame.font.get_init() == False:
+            pygame.font.init()
 
-        raylibpy.draw_text(text, x + 5, y + 5, constants.DEFAULT_FONT_SIZE, color)
+        my_font = pygame.font.SysFont("Rockwell", 25)
+        
+
+        self._window.blit(my_font.render(text, True, white), (x + 5, y + 5))
 
     def draw_image(self, x, y, image):
         """
@@ -60,11 +65,12 @@ class OutputService:
         """
         if image not in self._textures.keys():
 
-            loaded = raylibpy.load_texture(image)
+            loaded = pygame.image.load(image)
             self._textures[image] = loaded
 
         texture = self._textures[image]
-        raylibpy.draw_texture(texture, x, y, raylibpy.WHITE)
+        
+        self._window.blit(texture, (x, y))
 
     def draw_actor(self, actor):
         """Renders the given actor's text on the screen.
@@ -109,4 +115,4 @@ class OutputService:
         Args:
             self (OutputService): An instance of OutputService.
         """ 
-        raylibpy.end_drawing()
+        pygame.display.update()
